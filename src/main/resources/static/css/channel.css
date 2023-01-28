@@ -1,0 +1,15 @@
+#chat {
+    // width: max-content;
+    height: 200px;
+    padding: 10px;
+    border: 2px solid black;
+    margin-bottom: 10px;
+    //float: left;
+}
+#message {
+    width: 450px;
+    height: 200px;
+    padding: 10px;
+    border: 2px solid black;
+    text-decoration-color: darkslategrey;
+}

@@ -29,5 +29,14 @@ class UserControllerTest {
 		assertEquals("/welcome", view);
 		verify(model).put("user", model);
 	}
+	
+	
+	
+	@Test
+	public void userController_postOneUser_should_save_User () {
+		
+		
+		
+	}
 
 }

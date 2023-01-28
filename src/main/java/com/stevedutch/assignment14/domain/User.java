@@ -11,6 +11,12 @@ import javax.persistence.Table;
 @Table(name = "users")// changed into users
 public class User {
     
+	public String username;
+	@Override
+	public String toString() {
+		return "User [username=" + username + ", userId=" + userId + "]";
+	}
+
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
@@ -22,6 +28,14 @@ public class User {
 
 	public void setUserId(Long userId) {
 		this.userId = userId;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 }
