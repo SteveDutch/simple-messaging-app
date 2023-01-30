@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 // XXX theoretisch könnte ich hier auch null abfangen. Das tritt auf, wenn abgebrochen wird. 
-    let user = prompt("Hei, velkommen! Hva er navnet ditt?", "mitt navn er ");
+    let user = prompt("Hei, velkommen! Hva er navnet ditt?", "mitt navn er: ");
       document.getElementById('username').innerHTML = user;
       // thanks to https://stackoverflow.com/questions/17616624/detect-if-string-contains-any-spaces#17616646
     if (/^ *$/.test(user)) {
@@ -43,13 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
   sessionStorage.setItem("user", user); 
-
-
-   // let handOverUserToJava = document.getElementById('username').innerHTML;
-      
-      
-
-
     
 
 console.log(user);

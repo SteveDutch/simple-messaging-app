@@ -1,30 +1,43 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <title>channels</title>
     <script type="text/javascript"></script>
     <!-- XXX how Trevor does it -->
-    <script src="https://kit.fontawesome.com/a7bea4f05b.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/a7bea4f05b.js"
+      crossorigin="anonymous"
+    ></script>
     <!-- XXX how I did it at UDACITY -->
-    <link rel="stylesheet prefetch"
-        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" />
+    <link
+      rel="stylesheet prefetch"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"
+    />
     <link rel="stylesheet" href="css/channel.css" />
-</head>
+  </head>
 
-<body lang="en">
-    <h1>Hei, <span id="username" ></span>!</h1>
+  <body lang="en">
+    <h1>Hei, <span id="username"></span>!</h1>
     <h2>channel: general</h2>
 
     <div id="chat">die Nachrichten erscheinen hier</div>
-    <div>
-        <p>type your message</p>
-        <textarea id="message" >your message goes here</textarea>
-        <input type="submit" value="Submit">
-        </div>
-        
-    <script type="text/javascript" src="/js/channel.js"></script>
-</body>
 
+    <div>
+      <!-- <form action="" method="post"> -->
+        <p>your message</p>
+        <textarea id="message" name="sentMessage"></textarea>
+        <p><input id="submit" type="submit" value="Submit" /></p>
+        <!-- <button id="submit">Senden</button>  -->
+      <!-- </form> -->
+    </div>
+
+
+<!--  HOW IT IS WORKING
+ <textarea id="textarea"></textarea>
+
+ <button id="submit">Senden</button> -->
+ 
+    <script type="text/javascript" src="/js/channel.js"></script>
+  </body>
 </html>
