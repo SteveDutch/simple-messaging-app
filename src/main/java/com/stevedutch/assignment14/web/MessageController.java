@@ -9,7 +9,7 @@ public class MessageController {
 	
 	@PostMapping("channel")
 	public void postMessage(@RequestBody String string) {
-		System.out.println("hooray! submit butto has been hit! " + string + "was entered");
+		System.out.println("hooray! submit butto or enter has been hit! " + string + " was entered");
 		Boolean result = true;
 		return;
 	}

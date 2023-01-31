@@ -24,8 +24,25 @@ submitBtn.addEventListener("click", function () {
   let addText = document.createTextNode(sentMessage);
   // chat.appendChild(addText);
   chat.innerHTML += '<br>' + sentMessage;
+  messageToJava();
+})
 
+  let messageField = document.getElementById("message");
+  messageField.addEventListener('keypress', function (event) {
+    if (event.key === "Enter") {
+      console.log("hooray! enterkey pressed");
+      sentMessage = document.getElementById("message").value;
+      console.log("gesendet: " + sentMessage);
+      // document.getElementById("chat").innerHTML = sentMessage;
+      document.getElementById("message").value = "";
+      let addText = document.createTextNode(sentMessage);
+      // chat.appendChild(addText);
+      chat.innerHTML += '<br>' + sentMessage;
+      messageToJava();
+    
+    }})
 
+  function messageToJava () {  
   fetch(`http://127.0.0.1:8080/channel`, {
     method: "POST",
     headers: {
@@ -34,8 +51,8 @@ submitBtn.addEventListener("click", function () {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(sentMessage),
-  });
-});
+  })};
+
 
 /* HOW IZ IS WORKING
 let submitBtn = document.getElementById("submit");

@@ -1,10 +1,11 @@
 #chat {
-    // width: max-content;
+    /* width: max-content; */
     height: 200px;
     padding: 10px;
     border: 2px solid black;
     margin-bottom: 10px;
-    //float: left;
+    overflow: hidden;
+    /* float: left; */
 }
 #message {
     width: 450px;
