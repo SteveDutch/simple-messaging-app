@@ -12,6 +12,7 @@ import javax.persistence.Table;
 public class User {
     
 	public String username;
+	
 	@Override
 	public String toString() {
 		return "User [username=" + username + ", userId=" + userId + "]";
