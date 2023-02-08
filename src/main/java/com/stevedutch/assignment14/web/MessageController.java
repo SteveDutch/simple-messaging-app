@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.stevedutch.assignment14.domain.Message;
 import com.stevedutch.assignment14.service.MessageService;
 
 @Controller
@@ -18,7 +17,8 @@ public class MessageController {
 	public void postMessage(@RequestBody String string) {
 		System.out.println("hooray! submit butto or enter has been hit! " + string + " was entered");
 		messageService.saveMessage(string);
-		
+		// TODO FIXME max Größe  0 255 Zeichen ob mySQL/VARCHAR hier oder in JSfixen?
+// TODOremove \n o.ä., dito: where? JS or JAVA?
 		return;
 	}
 

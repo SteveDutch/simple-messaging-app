@@ -1,3 +1,4 @@
+// TODO refactor - mehr Funktionen für die Übersichtlichkeit und maintenance -alle JS-Files
 let sentMessage;
 let chat = document.getElementById("chat");
 
