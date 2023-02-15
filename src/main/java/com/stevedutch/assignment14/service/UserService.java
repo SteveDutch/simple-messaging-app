@@ -1,5 +1,7 @@
 package com.stevedutch.assignment14.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,11 +21,34 @@ public class UserService {
 
 	public User saveUser(String username) {
 		System.out.println(username);
-		User user = new User();
-		user.setUsername(username);
-		System.out.println(user);
-		return userRepo.save(user);
+		User user = null;
+		if (user.getUsername() == null) {
+			user = new User();
+			user.setUsername(username);
+			return userRepo.save(user);
+		} else {
+			user = userRepo.findByUsername(username);
+			return user;
+		}
+ 		
+		
+//		System.out.println(user);
+		
 		
 	}
+	
+	   public User findExactlyOneUserByUsername(String username) {
+	        List<User> users = userRepo.findExactlyOneUserByUsername(username);
+	        if (users.size() > 0) {
+	        	System.out.println("existierenden user gefuden!");
+	            return users.get(0);
+	        } else
+	        	System.out.println("neuer user kreiert");
+	            return new User(username);
+	    }
+	
+    public User findByUsername(String username) {
+        return userRepo.findByUsername(username);
+    }
 
 }

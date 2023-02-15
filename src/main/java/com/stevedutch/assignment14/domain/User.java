@@ -15,6 +15,7 @@ import javax.persistence.Table;
 @Table(name = "users")// changed into users
 public class User {
     
+	@Column(unique=true)
 	public String username;
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +24,20 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Message> messages = new ArrayList<>();
 	
+	
+	
+	public User(String username) {
+		super();
+		this.username = username;
+//		this.userId = getUserId();
+	
+	}
+
+	
+	public User() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Long getUserId() {
 		return userId;
 	}
