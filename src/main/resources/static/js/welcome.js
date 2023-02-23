@@ -44,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   sessionStorage.setItem("user", user); 
     
-
 console.log(user);
 console.log(start);
 console.log(sessionStorage.getItem("user"));

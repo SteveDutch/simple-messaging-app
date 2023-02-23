@@ -2,6 +2,8 @@
 let sentMessage;
 let chat = document.getElementById("chat");
 
+let userMessage = {};
+
 console.log(
   sessionStorage.getItem("user") +
     "    printed from beginning of channel.js line 1"
@@ -16,34 +18,32 @@ document.getElementById("username").innerHTML = user;
 
 let submitBtn = document.getElementById("submit");
 submitBtn.addEventListener("click", function () {
-  // code to be executed when button is clicked
-  console.log("hooray! clicked");
+  console.log("hooray! submit was clicked");
+  enterMessage();
+});
+
+let messageField = document.getElementById("message");
+messageField.addEventListener("keypress", function (event) {
+  if (event.key === "Enter") {
+    console.log("hooray! enterkey pressed");
+    enterMessage();
+  }
+});
+
+function enterMessage () {
   sentMessage = document.getElementById("message").value;
   console.log("gesendet: " + sentMessage);
-  // document.getElementById("chat").innerHTML = sentMessage;
   document.getElementById("message").value = "";
-  let addText = document.createTextNode(sentMessage);
-  // chat.appendChild(addText);
-  chat.innerHTML += '<br>' + sentMessage;
+  // would put message into chat:
+  //chat.innerHTML += '<br>' + user + '   :   ' + sentMessage;
+  userMessage.messageText =sentMessage; 
+  userMessage.user = sessionStorage.getItem("user");
+  console.log(userMessage);
+  console.log("als JSON:  " + JSON.stringify(userMessage));
   messageToJava();
-})
+}
 
-  let messageField = document.getElementById("message");
-  messageField.addEventListener('keypress', function (event) {
-    if (event.key === "Enter") {
-      console.log("hooray! enterkey pressed");
-      sentMessage = document.getElementById("message").value;
-      console.log("gesendet: " + sentMessage);
-      // document.getElementById("chat").innerHTML = sentMessage;
-      document.getElementById("message").value = "";
-      let addText = document.createTextNode(sentMessage);
-      // chat.appendChild(addText);
-      chat.innerHTML += '<br>' + sentMessage;
-      messageToJava();
-    
-    }})
-
-  function messageToJava () {  
+function messageToJava() {
   fetch(`http://127.0.0.1:8080/channel`, {
     method: "POST",
     headers: {
@@ -51,10 +51,32 @@ submitBtn.addEventListener("click", function () {
       //mode: "no-cors", nicht nötig, da fetch & a-c-a-o jetzt übereinstimmen, die abweichung localhost zu 127.0.0.1 war schon zuviel ;)
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(sentMessage),
-  })};
+    body: JSON.stringify(userMessage),
+  });
+}
 
-
+setInterval(getLast10MessagesFromServer, 500)
+function getLast10MessagesFromServer() {
+fetch("http://127.0.0.1:8080/channel/messages", {
+  method: "GET",
+  headers: {
+    "Access-Control-Allow-Origin": "http://127.0.0.1:8080",
+    //mode: "no-cors", nicht nötig, da fetch & a-c-a-o jetzt übereinstimmen, die abweichung localhost zu 127.0.0.1 war schon zuviel ;)
+    "Content-Type": "application/json",
+  },
+}) // chtGPL
+  .then((response) => response.json())
+  .then((data) => {
+    let html = "";
+    data.forEach((item) => {
+      html += `${item.username}: ${item.messageText}<br>`;
+    });
+    document.querySelector("#chat").innerHTML = html;
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+}
 /* HOW IZ IS WORKING
 let submitBtn = document.getElementById("submit");
 submitBtn.addEventListener("click", function() {

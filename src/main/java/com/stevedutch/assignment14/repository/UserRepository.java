@@ -13,6 +13,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 //	List<User> findByUsername2(String username);
 	
 	// select * from users where username = :username
+	// XXX wiederhole warum dies funktioniert ohne @Query
 	public User findByUsername(String username);
 
 

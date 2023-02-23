@@ -33,12 +33,6 @@ public class UserController {
 		return "/welcome";
 	}
 	
-//	@PostMapping("/welcome")
-//	public String postUsername (@RequestBody String username, String userId) {
-//		System.out.println(username + "here");
-//		
-//		//userService.saveUser(user);
-//		return "/welcome";
-//	}
+
 
 }
