@@ -1,10 +1,12 @@
 #chat {
     /* width: max-content; */
-    height: 200px;
+    height: max-content;
     padding: 10px;
     border: 2px solid black;
     margin-bottom: 10px;
     overflow: hidden;
+    word-break:break-all;
+    word-wrap:break-word;
     /* float: left; */
 }
 #message {

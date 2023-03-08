@@ -70,6 +70,9 @@ class ChannelControllerTest extends ChannelController {
 	    
 	    @Mock
 	    private ModelMap modelMap;
+
+		@InjectMocks
+		ChannelController underTest;
 	    
 	    @Test
 	    public void testShowChannel() {

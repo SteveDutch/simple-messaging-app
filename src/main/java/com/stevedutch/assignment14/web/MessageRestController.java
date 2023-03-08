@@ -21,7 +21,7 @@ public class MessageRestController {
 	public String getLast10Messages () throws JsonProcessingException {
 //		ArrayList<Message> messagesToJS = messageService.findLast10Messages();
 		System.out.println("very start of RestController, ");
-
+// XXX this doesn't looks good
 		ObjectMapper mapper = new ObjectMapper();
 		
 		ArrayList<MessageTextAndUserDTO> messagesToJsDTO = messageService.get10MessagesDTO();

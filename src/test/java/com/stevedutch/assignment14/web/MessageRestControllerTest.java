@@ -1,31 +1,29 @@
-/**
- * 
- */
 package com.stevedutch.assignment14.web;
 
-import static org.junit.Assert.assertEquals;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.stevedutch.assignment14.service.MessageService;
 
-/**
- * @author jeg
- *
- */
-class MessageRestControllerTest {
+@ExtendWith(MockitoExtension.class)
+ class MessageRestControllerTest{
 
-	/**
-	 * Test method for {@link com.stevedutch.assignment14.web.MessageRestController#getLast10Messages(java.lang.String)}.
-	 * @throws JsonProcessingException 
-	 */
+	@InjectMocks
+	MessageRestController underTest;
+	@Mock
+	MessageService messageService;
 	@Test
-	final void testGetLast10Messages() throws JsonProcessingException {
-		MessageRestController sut = new MessageRestController();
-		
-		String exspectedResult = sut.getLast10Messages();
-		
-		assertEquals("evoked", exspectedResult);
-	}
-
+	 void testGetLast10Messages() throws Exception {
+	// given
+	// when
+	String actual=underTest.getLast10Messages();
+	// then
+	assertThat(actual).isEqualTo("TestExpected");
+	} 
 }

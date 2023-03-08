@@ -21,13 +21,13 @@ public class UserService {
 
 	public User saveUser(String username) {
 		System.out.println(username);
-		User user = null;
-		if (user.getUsername() == null) {
+		User user = userRepo.findByUsername(username);
+		if (user == null) {
 			user = new User();
 			user.setUsername(username);
 			return userRepo.save(user);
 		} else {
-			user = userRepo.findByUsername(username);
+			
 			return user;
 		}
 
