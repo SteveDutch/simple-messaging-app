@@ -22,7 +22,7 @@ import com.stevedutch.assignment14.service.MessageService;
 	 void testGetLast10Messages() throws Exception {
 	// given
 	// when
-	String actual=underTest.getLast10Messages();
+	String actual = underTest.getLast10Messages();
 	// then
 	assertThat(actual).isEqualTo("TestExpected");
 	} 

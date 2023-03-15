@@ -12,62 +12,69 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.google.gson.annotations.SerializedName;
 
-
 @Entity
-@Table(name="messages")
+@Table(name = "messages")
 public class Message {
-	
 
 	@SerializedName("messageText")
 	private String messageText;
 
 	@SerializedName("messageId")
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "message_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "message_id")
 	private Long messageId;
+
 	@JsonBackReference
 	@SerializedName("user")
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-    
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+
 	public Message(String messageText, String username) {
 		super();
 		this.messageText = messageText;
-//		this.user = userService.findByUsername(username);
+//	XXX ??	this.user = userService.findByUsername(username);
 	}
-    
+
 	public Message(String messageText, User user) {
 		super();
 		this.messageText = messageText;
-//		this.user = user;
+//XXX ??	this.user = user;
 	}
+
 	public Message() {
-		
-		
+
 	}
+
 	public String getMessageText() {
 		return messageText;
 	}
+
 	public void setMessageText(String message) {
 		this.messageText = message;
 	}
+
 	public Long getMessageId() {
 		return messageId;
 	}
+
 	public void setMessageId(Long messageId) {
 		this.messageId = messageId;
 	}
+
 	public User getUser() {
 		return user;
 	}
+
 	public void setUser(User user) {
 		this.user = user;
 	}
+
 	@Override
 	public String toString() {
-		return "Message [messageText = "  + messageText + ", messageId = " + messageId +   ", user = "  + ( user.getUsername()) + (user.getUserId())  + "]";
+		return "Message [messageText = " + messageText + ", messageId = " + messageId 
+				+ ", user = " + (user.getUsername()) + (user.getUserId()) + "]";
 	}
 
 }
