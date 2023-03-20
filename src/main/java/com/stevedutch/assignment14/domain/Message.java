@@ -31,18 +31,6 @@ public class Message {
 	@JoinColumn(name = "user_id")
 	private User user;
 
-	public Message(String messageText, String username) {
-		super();
-		this.messageText = messageText;
-//	XXX ??	this.user = userService.findByUsername(username);
-	}
-
-	public Message(String messageText, User user) {
-		super();
-		this.messageText = messageText;
-//XXX ??	this.user = user;
-	}
-
 	public Message() {
 
 	}

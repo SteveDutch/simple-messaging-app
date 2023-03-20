@@ -1,19 +1,17 @@
 // TODO refactor - mehr Funktionen für die Übersichtlichkeit und maintenance -alle JS-Files
+
+/* VARIABLES */
 let sentMessage;
 let chat = document.getElementById('chat');
 
 let userMessage = {};
-
-console.log(
-  sessionStorage.getItem('user') +
-    '    printed from beginning of channel.js line 1'
-);
 
 let user = sessionStorage.getItem('user');
 if (user == null) {
   /*   XXX Note: The difference between href and replace, is that replace() removes the URL of the current document from the document history, meaning that it is not possible to use the 'back' button to navigate back to the original document. Thanks to w3school*/
   location.replace('http://127.0.0.1:8080/welcome');
 }
+
 document.getElementById('username').innerHTML = user;
 
 let submitBtn = document.getElementById('submit');
@@ -23,6 +21,7 @@ submitBtn.addEventListener('click', function () {
 });
 
 let messageField = document.getElementById('message');
+
 /* DEPRECATED, keydown is recommended
 messageField.addEventListener('keypress', function (event) {
   if (event.key === 'Enter') {
@@ -32,6 +31,7 @@ messageField.addEventListener('keypress', function (event) {
 }); */
 messageField.addEventListener('keydown', function (event) {
   if (event.key === 'Enter') {
+    // prevent default behavoiur of enter (= '\n' or newline)
     event.preventDefault();
     console.log('hooray! enterkey pressed');
     enterMessage();
@@ -39,7 +39,7 @@ messageField.addEventListener('keydown', function (event) {
 }); 
 
 
-// XXXc heck here, Leerzeichentest oder nicht
+// XXX check here, Leerzeichentest oder nicht
 function enterMessage () {
   sentMessage = document.getElementById('message').value;
   if (sentMessage === '' || sentMessage === null) {
@@ -81,7 +81,7 @@ fetch('http://127.0.0.1:8080/channel/messages', {
   .then((data) => {
     let html = '';
     data.forEach((item) => {
-      html += `<br>${item.username}: ${item.messageText}`;
+      html += `<br><b>${item.username}:</b> ${item.messageText}`;
     });
     document.querySelector('#chat').innerHTML = html;
   })
@@ -89,11 +89,4 @@ fetch('http://127.0.0.1:8080/channel/messages', {
     console.error(error);
   });
 }
-/* HOW IZ IS WORKING
-let submitBtn = document.getElementById('submit');
-submitBtn.addEventListener('click', function() {
-    let textareaValue = document.getElementById('textarea').value;
-     
-    console.log(textareaValue);
-    
-}); */
+

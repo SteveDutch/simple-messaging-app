@@ -46,13 +46,10 @@ public class User {
 	public User(String username) {
 		super();
 		this.username = username;
-//	XXX ??	this.userId = getUserId();
- 
 	}
 
 	public User() {
-		// TODO Auto-generated constructor stub
-		// XXX why it's better to write it out? Ullman wrote about it,I think
+		
 	}
 
 	public Long getUserId() {

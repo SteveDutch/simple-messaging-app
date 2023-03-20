@@ -1,8 +1,7 @@
 package com.stevedutch.assignment14.dto;
 
-
 public class MessageTextAndUserDTO {
-	
+
 	private String messageText;
 	private String username;
 

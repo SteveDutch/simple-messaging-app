@@ -27,7 +27,6 @@ public class MessageRestController {
 		ArrayList<MessageTextAndUserDTO> messagesToJsDTO = messageService.get10MessagesDTO();
 		String resultDTO = mapper.writeValueAsString(messagesToJsDTO);
 		
-
 		System.out.println("resultDTO = " + resultDTO);
 		return resultDTO;
 		

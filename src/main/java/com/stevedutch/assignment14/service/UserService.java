@@ -15,7 +15,6 @@ public class UserService {
 	private UserRepository userRepo;
 
 	public User saveUser(User user) {
-
 		return userRepo.save(user);
 	}
 
@@ -27,14 +26,12 @@ public class UserService {
 			user.setUsername(username);
 			return userRepo.save(user);
 		} else {
-			
 			return user;
 		}
 
 	}
 
 	public User findExactlyOneUserByUsername(String username) {
-		
 		List<User> users = userRepo.findExactlyOneUserByUsername(username);
 		if (users.size() > 0) {
 			System.out.println("existierenden user gefuden!");
@@ -49,7 +46,6 @@ public class UserService {
 	}
 
 	public User findByUsername(User user) {
-
 		return userRepo.findByUsername(user.username);
 	}
 

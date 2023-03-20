@@ -8,14 +8,9 @@ import org.springframework.data.jpa.repository.Query;
 import com.stevedutch.assignment14.domain.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
-	
-	// select * from users where username = :username
-//	List<User> findByUsername2(String username);
-	
-	// select * from users where username = :username
-	// XXX wiederhole warum dies funktioniert ohne @Query
-	public User findByUsername(String username);
 
+	// XXX wiederhole warum dies funktioniert ohne @Query --> weil es Teil von JpaRepository ist :)
+	public User findByUsername(String username);
 
 	@Query("select u from User u where username = :username")
 	public List<User> findExactlyOneUserByUsername(String username);

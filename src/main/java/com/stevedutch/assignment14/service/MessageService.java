@@ -14,13 +14,12 @@ import com.stevedutch.assignment14.repository.MessageRepository;
 
 @Service
 public class MessageService {
-	
+
 	@Autowired
 	private MessageRepository messageRepo;
-	
+
 	public Message saveMessage(Message message) {
 		return messageRepo.save(message);
-		
 	}
 
 	public Message saveMessage(String string, User user) {
@@ -30,27 +29,25 @@ public class MessageService {
 		message.setMessageText(string);
 		System.out.println(message);
 		return messageRepo.save(message);
-		
 	}
 
 	public ArrayList<Message> findLast10Messages() {
 		return messageRepo.findLast10Messages();
-		
 	}
-	
+
 	public ArrayList<MessageTextAndUserDTO> get10MessagesDTO() {
-		List <Message> lastTen = messageRepo.findLast10Messages();
+		List<Message> lastTen = messageRepo.findLast10Messages();
 		ArrayList<MessageTextAndUserDTO> messageDTO = new ArrayList<>();
 
 		for (Message elem : lastTen) {
-		    MessageTextAndUserDTO messDTO = new MessageTextAndUserDTO();
-		    messDTO.setMessageText(elem.getMessageText());
-		    messDTO.setUsername(elem.getUser().getUsername());
-		    messageDTO.add(messDTO);
+			MessageTextAndUserDTO messDTO = new MessageTextAndUserDTO();
+			messDTO.setMessageText(elem.getMessageText());
+			messDTO.setUsername(elem.getUser().getUsername());
+			messageDTO.add(messDTO);
 		}
-		
-		Collections.reverse(messageDTO); 
-		return messageDTO ;
+
+		Collections.reverse(messageDTO);
+		return messageDTO;
 	}
 
 	public ArrayList<Message> findLast10MessageTextsAndUsermame() {

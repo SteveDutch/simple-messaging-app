@@ -24,7 +24,6 @@ public class MessageController {
 	@Autowired
 	private MessageService messageService;
 	
-
 	@PostMapping("channel")
 	public void postMessageInclUser(@RequestBody String json) throws JsonMappingException, JsonProcessingException {
 
