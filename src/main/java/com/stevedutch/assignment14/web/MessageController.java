@@ -35,8 +35,6 @@ public class MessageController {
 		User user = userService.findByUsername(message.getUser());
 		message.setUser(user); 
 		messageService.saveMessage(message);
-		System.out.println(message);
-		System.out.println("hooray! submit butto or enter has been hit! " +"erhaltenes json:  "+ json + " username: "  + " was entered");
 		return;
 	}
 

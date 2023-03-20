@@ -33,10 +33,6 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Message> messages = new ArrayList<>();
 
-	/**
-	 * @param username
-	 * @param messages
-	 */
 	public User(String username, List<Message> messages) {
 		super();
 		this.username = username;

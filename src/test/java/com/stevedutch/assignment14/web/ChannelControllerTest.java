@@ -14,69 +14,61 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.ui.ModelMap;
 
-// TODO Aufräumen
-
 @ExtendWith(MockitoExtension.class)
 @WebAppConfiguration
 @AutoConfigureMockMvc
 class ChannelControllerTest extends ChannelController {
-	
-	// powered by YouCom
-	    @Mock
-	    private ModelMap model;
 
-	    @InjectMocks
-	    private ChannelController controller;
+	@Mock
+	private ModelMap model;
 
-	    @Test
-	    public void showChannelTest() {
-	    	// XXX MockitoAnnotations.initMocks(this); --> deprecated, stattdessen siehe oben, @extend...
-	    	// ansonsten werden die mocks nicht initialisiert und liefern null zurück
-	    	model.addAttribute("user", model);
+	@InjectMocks
+	private ChannelController controller;
 
-	    	String view = controller.showChannel(model);
-	        
-	        assertEquals("/channel", view);
-	        verify(model).put("user", model);
-	    }
-	    // powered by You.Com 2. Runde
-	    @Test
-	    public void shouldShowChannel() {
-	        //when(model.put("user", model)).thenReturn(true); --> da mock initialisiert (s.o.) nicht mehr notwendig
-	        String result = channelController.showChannel(model);
-	        assertEquals("/channel", result);
-	        verify(model).put("user", model);
-	    }
-	// powered by ChatGPT  --> ist eher ein Integrationtest! Deshalb läuft es hier wohl nicht, bzw.mit NullPointerException:
-	// kein @WebMvcTest(ChannelController.class)-Annotation, also läuft SPRING nicht, also keinController,
-	    // also mockMVC leer ---> CODE GELÖSCHT, BEIZEITEN NACHVOLLZIEHEN
+	@Test
+	public void showChannelTest() {
 
-	    @InjectMocks
-	    private ChannelController channelController;
-	    
-	    @Test
-	    void myShowChannelTest() {
-	    	ModelMap sut = new ModelMap();
-	    	ChannelController sut2= new ChannelController();
-	    	
-	    	String expectedResult = sut2.showChannel(sut);
-	    	
-	    	assertEquals("/channel", expectedResult);
-	    	assertTrue(sut.containsAttribute("user"));
-	    }
-	    
-	    @Mock
-	    private ModelMap modelMap;
+		model.addAttribute("user", model);
 
-		@InjectMocks
-		ChannelController underTest;
-	    
-	    @Test
-	    public void testShowChannel() {
-	        String viewName = channelController.showChannel(modelMap);
-	        verify(modelMap, times(1)).put("user", modelMap);
-	        assertEquals("/channel", viewName);
-	    }
+		String view = controller.showChannel(model);
 
+		assertEquals("/channel", view);
+		verify(model).put("user", model);
 	}
 
+	@Test
+	public void shouldShowChannel() {
+
+		String result = channelController.showChannel(model);
+		assertEquals("/channel", result);
+		verify(model).put("user", model);
+	}
+
+	@InjectMocks
+	private ChannelController channelController;
+
+	@Test
+	void myShowChannelTest() {
+		ModelMap sut = new ModelMap();
+		ChannelController sut2 = new ChannelController();
+
+		String expectedResult = sut2.showChannel(sut);
+
+		assertEquals("/channel", expectedResult);
+		assertTrue(sut.containsAttribute("user"));
+	}
+
+	@Mock
+	private ModelMap modelMap;
+
+	@InjectMocks
+	ChannelController underTest;
+
+	@Test
+	public void testShowChannel() {
+		String viewName = channelController.showChannel(modelMap);
+		verify(modelMap, times(1)).put("user", modelMap);
+		assertEquals("/channel", viewName);
+	}
+
+}

@@ -1,6 +1,5 @@
 # remember to update the dummy where necessary
 
-
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 spring.datasource.url=jdbc:mysql://localhost:3306/nuntius
 spring.datasource.username = root
@@ -13,10 +12,6 @@ spring.jpa.show-sql = true
 # from trevor spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
 # from vlad https://vladmihalcea.com/?s=application.properties&submit=Go
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
-
-# XXX takenfrom demdernichtgenanntwerdensoll, ggf löschen (and check it out, google it)
-# spring.jpa.database = mysql
-# funktioniert ohne auch ganz wunderbar
 
 spring.thymeleaf.cache = false
 

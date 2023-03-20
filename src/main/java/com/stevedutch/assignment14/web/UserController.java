@@ -24,11 +24,8 @@ public class UserController {
 	
 	@PostMapping("/welcome")
 	public String postUser (@RequestBody User user) {
-		System.out.println("im controller erhaltener user: "+ user);
 		User actualUser = userService.findExactlyOneUserByUsername(user.getUsername());
-		System.out.println("aus DB retournierter User:  " + actualUser);
 		userService.saveUser(actualUser);
-		System.out.println("im Controller gespeicherter user: " + actualUser);
 		return "/welcome";
 	}
 	

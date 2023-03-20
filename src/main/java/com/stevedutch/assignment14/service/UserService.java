@@ -19,6 +19,7 @@ public class UserService {
 	}
 
 	public User saveUser(String username) {
+		
 		System.out.println(username);
 		User user = userRepo.findByUsername(username);
 		if (user == null) {
@@ -28,10 +29,10 @@ public class UserService {
 		} else {
 			return user;
 		}
-
 	}
 
 	public User findExactlyOneUserByUsername(String username) {
+		
 		List<User> users = userRepo.findExactlyOneUserByUsername(username);
 		if (users.size() > 0) {
 			System.out.println("existierenden user gefuden!");
