@@ -12,5 +12,7 @@ public class ChannelController {
 		model.put("user", model);
 		return "/channel";
 	}
-
+	
 }
+
+
