@@ -1,9 +1,17 @@
 let start = Date.now(); 
-console.log('her\'s SessionStorage-Inhalt:' + sessionStorage.getItem('user'));
-// XXX theoretisch könnte ich hier auch null abfangen. Das tritt auf, wenn abgebrochen wird. 
+ 
+let user = sessionStorage.getItem('user');
+displayUser(user);
+if (sessionStorage.getItem('user') == null)   {
+  user = newUser();
+}
+
+
+console.log('here\'s SessionStorage-Inhalt:' + sessionStorage.getItem('user'));
 
 document.addEventListener('DOMContentLoaded', () => {
   let username = document.getElementById('username').innerHTML;
+  //document.getElementById('username').innerHTML = user;
 
   console.log(username + '1 / ');
   let user = {
@@ -29,21 +37,32 @@ document.addEventListener('DOMContentLoaded', () => {
   }) */
 })
 
-// XXX theoretisch könnte ich hier auch null abfangen. Das tritt auf, wenn abgebrochen wird. 
-    let user = prompt('Hei, velkommen! Hva er navnet ditt?', 'mitt navn er: ');
-      document.getElementById('username').innerHTML = user;
-      // thanks to https://stackoverflow.com/questions/17616624/detect-if-string-contains-any-spaces#17616646
-    if (/^ *$/.test(user)) {
-        let user = prompt('Come on, enter your name', 'nobody');
-        if (/^ *$/.test(user)) {
-            user = 'nemo' + start.toString()/1000;
-            document.getElementById('username').innerHTML = user;
-        }    
-        document.getElementById('username').innerHTML = user;
-    };
-
-  sessionStorage.setItem('user', user); 
-    
+   
 console.log(user);
 console.log(start);
-console.log(sessionStorage.getItem('user'));
+console.log('user = ' + sessionStorage.getItem('user'));
+function newUser() {
+  let user = prompt('Hei, velkommen! Hva er navnet ditt?', 'mitt navn er: ');
+  document.getElementById('username').innerHTML = user;
+  // thanks to https://stackoverflow.com/questions/17616624/detect-if-string-contains-any-spaces#17616646
+  if (/^ *$/.test(user)) {
+    user = prompt('Come on, enter your name', 'nobody');
+    //document.getElementById('username').innerHTML = user;
+  }
+    if (/^ *$/.test(user)) {
+      user = 'nemo\'s epoch seconds' + start.toString() / 1000;
+    }
+   
+  else if (user === null) {
+    user = 'nobody\'s epoch seconds ' + start.toString() / 1000000;
+  }
+  displayUser(user);
+
+  sessionStorage.setItem('user', user);
+  return user;
+}
+
+function displayUser(user) {
+  document.getElementById('username').innerHTML = user;
+}
+

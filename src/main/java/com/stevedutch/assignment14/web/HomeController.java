@@ -26,5 +26,10 @@ public class HomeController {
 
 		return "redirect:" + redirectUrl;
 	}
+	
+//	@GetMapping("/{path1}/{path2}")
+//    public String redirectToWelcome() {
+//        return "redirect:/welcome";
+//    }
 
 }
