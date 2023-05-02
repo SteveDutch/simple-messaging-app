@@ -21,15 +21,11 @@ public class HomeController {
 			redirectUrl = "/welcome";
 		} else {
 			// If the requested URL is not the welcome page, redirect to the welcome page
-			redirectUrl = "/welcome";
+			// with the typo as parameter
+			redirectUrl = "/welcome?mistypedUrl=" + page;
 		}
 
 		return "redirect:" + redirectUrl;
 	}
-	
-//	@GetMapping("/{path1}/{path2}")
-//    public String redirectToWelcome() {
-//        return "redirect:/welcome";
-//    }
 
 }
