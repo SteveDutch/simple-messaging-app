@@ -10,23 +10,24 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.google.gson.annotations.SerializedName;
+// XXX removed GSON, because "Mixing both libs can make make debugging harder in case of issues"
+//import com.google.gson.annotations.SerializedName;
 
 @Entity
 @Table(name = "messages")
 public class Message {
 
-	@SerializedName("messageText")
+//	@SerializedName("messageText")
 	private String messageText;
 
-	@SerializedName("messageId")
+//	@SerializedName("messageId")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "message_id")
 	private Long messageId;
 
 	@JsonBackReference
-	@SerializedName("user")
+//	@SerializedName("user")
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;

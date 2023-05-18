@@ -12,24 +12,25 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.google.gson.annotations.SerializedName;
+//XXX removed GSON, because "Mixing both libs can make make debugging harder in case of issues"
+// import com.google.gson.annotations.SerializedName;
 
 @Entity // Class name = User, DB Table name = user
 @Table(name = "users") // changed into users
 public class User {
 
-	@SerializedName("username")
+//	@SerializedName("username")
 	@Column(unique = true)
 	public String username;
 
-	@SerializedName("userId")
+//	@SerializedName("userId")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
 	private Long userId;
 
 	@JsonManagedReference
-	@SerializedName("messages")
+//	@SerializedName("messages")
 	@OneToMany(mappedBy = "user")
 	private List<Message> messages = new ArrayList<>();
 
