@@ -12,7 +12,8 @@ import org.junit.jupiter.api.Test;
  *
  */
 class MessageRestControllerTest {
-
+// XXX do or delete
+	
 	/**
 	 * Test method for {@link com.stevedutch.assignment14.web.MessageRestController#getLast10Messages()}.
 	 */
