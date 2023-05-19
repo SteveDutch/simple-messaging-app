@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @Table(name = "messages")
 public class Message {
 
-//	@SerializedName("messageText")
+//	@SerializedName("messageText") in Jackson it would be @JsonProperty("messageText")
 	private String messageText;
 
 //	@SerializedName("messageId")

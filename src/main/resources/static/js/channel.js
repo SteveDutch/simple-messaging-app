@@ -40,7 +40,7 @@ function enterMessage() {
 		console.log('gesendet: ' + sentMessage);
 		document.getElementById('message').value = '';
 		// would put message into chat:
-		//chat.innerHTML += '<br>' + user + '   :   ' + sentMessage;
+		// chat.innerHTML += '<br>' + user + '   :   ' + sentMessage;
 		userMessage.messageText = sentMessage;
 		userMessage.user = sessionStorage.getItem('user');
 		console.log(userMessage);
@@ -54,7 +54,11 @@ function messageToJava() {
 		method: 'POST',
 		headers: {
 			'Access-Control-Allow-Origin': 'http://127.0.0.1:8080',
-			//mode: 'no-cors', nicht nötig, da fetch & a-c-a-o jetzt übereinstimmen, die abweichung localhost zu 127.0.0.1 war schon zuviel ;)
+			/*	 nicht nötig, da fetch & a-c-a-o jetzt übereinstimmen,
+			die abweichung localhost zu 127.0.0.1 war schon zuviel ;)
+			but seems to cause trouble if missing at other computers or 
+			maybe esp. at macs */
+			 mode: 'no-cors', 
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify(userMessage),

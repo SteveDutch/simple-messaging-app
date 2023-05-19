@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Table(name = "users") // changed into users
 public class User {
 
-//	@SerializedName("username")
+//	@SerializedName("username") in Jackson it would be @JsonProperty("username")
 	@Column(unique = true)
 	public String username;
 
