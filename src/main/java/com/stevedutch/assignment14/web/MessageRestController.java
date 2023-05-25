@@ -1,6 +1,7 @@
 package com.stevedutch.assignment14.web;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,15 +19,11 @@ public class MessageRestController {
 	MessageService messageService;
 	
 	@GetMapping("/channel/messages")
-	public String getLast10Messages () throws JsonProcessingException {
+	public List<MessageTextAndUserDTO> getLast10Messages () {
 
 		System.out.println("very start of RestController, ");
-		ObjectMapper mapper = new ObjectMapper();
-		
-		ArrayList<MessageTextAndUserDTO> messagesToJsDTO = messageService.get10MessagesDTO();
-		String resultDTO = mapper.writeValueAsString(messagesToJsDTO);
-		
-		return resultDTO;
+
+		return messageService.get10MessagesDTO();
 		
 	}
 

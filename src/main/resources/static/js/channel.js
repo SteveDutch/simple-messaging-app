@@ -50,15 +50,15 @@ function enterMessage() {
 }
 
 function messageToJava() {
-	fetch(`http://127.0.0.1:8080/channel`, {
+	fetch(`/channel`, {
 		method: 'POST',
 		headers: {
-			'Access-Control-Allow-Origin': 'http://127.0.0.1:8080',
+			 'Access-Control-Allow-Origin': 'http://127.0.0.1:8080',
 			/*	 nicht nötig, da fetch & a-c-a-o jetzt übereinstimmen,
 			die abweichung localhost zu 127.0.0.1 war schon zuviel ;)
 			but seems to cause trouble if missing at other computers or 
 			maybe esp. at macs */
-			 mode: 'no-cors', 
+//			 mode: 'no-cors',
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify(userMessage),
@@ -67,7 +67,7 @@ function messageToJava() {
 
 setInterval(getLast10MessagesFromServer, 500)
 function getLast10MessagesFromServer() {
-	fetch('http://127.0.0.1:8080/channel/messages', {
+	fetch('/channel/messages', {
 		method: 'GET',
 		headers: {
 			'Access-Control-Allow-Origin': 'http://127.0.0.1:8080',

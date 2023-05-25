@@ -25,17 +25,11 @@ public class MessageController {
 	private MessageService messageService;
 	
 	@PostMapping("channel")
-	public void postMessageInclUser(@RequestBody String json) throws JsonMappingException, JsonProcessingException {
-
-		System.out.println(json);
-	
-		ObjectMapper objectMapper = new ObjectMapper();
-		Message message = objectMapper.readValue(json, Message.class);		
+	public void postMessageInclUser(@RequestBody Message message) {
 		
 		User user = userService.findByUsername(message.getUser());
 		message.setUser(user); 
 		messageService.saveMessage(message);
-		return;
 	}
 
 }

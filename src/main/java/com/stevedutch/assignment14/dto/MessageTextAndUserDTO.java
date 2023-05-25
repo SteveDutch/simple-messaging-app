@@ -5,6 +5,11 @@ public class MessageTextAndUserDTO {
 	private String messageText;
 	private String username;
 
+	public MessageTextAndUserDTO(String messageText, String username) {
+		this.messageText = messageText;
+		this.username = username;
+	}
+
 	public String getMessageText() {
 		return messageText;
 	}
