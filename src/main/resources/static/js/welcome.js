@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     username: username,
   };
   console.log("im fetch! " + user.username);
-  fetch(`http://127.0.0.1:8080/welcome`, {
+  fetch(`/welcome`, {
     method: "POST",
     headers: {
       "Access-Control-Allow-Origin": "http://127.0.0.1:8080",
