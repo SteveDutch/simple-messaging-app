@@ -1,8 +1,7 @@
-let start = Date.now();
+const start = Date.now();
 let user = sessionStorage.getItem("user");
 
-displayUser(user);
-if (sessionStorage.getItem("user") == null) {
+if (user == null) {
   user = newUser();
 }
 
@@ -10,17 +9,16 @@ console.log("here's SessionStorage-Inhalt:" + sessionStorage.getItem("user"));
 
 document.addEventListener("DOMContentLoaded", () => {
   let username = document.getElementById("username").innerHTML;
-  //document.getElementById('username').innerHTML = user;
 
   console.log(username + "1 / ");
   let user = {
     username: username,
   };
   console.log("im fetch! " + user.username);
-  fetch(`http://127.0.0.1:8080/welcome`, {
+  fetch(`http://localhost:8080/welcome`, {
     method: "POST",
     headers: {
-      "Access-Control-Allow-Origin": "http://127.0.0.1:8080",
+      "Access-Control-Allow-Origin": "http://locahost:8080",
       //mode: 'no-cors', nicht nötig, da fetch & a-c-a-o jetzt übereinstimmen, die abweichung localhost zu 127.0.0.1 war schon zuviel ;)
       "Content-Type": "application/json",
     },
@@ -39,17 +37,8 @@ console.log("user = " + sessionStorage.getItem("user"));
 
 /* functions */
 function newUser() {
-  let user = prompt("Hei, velkommen! Hva er navnet ditt?", "mitt navn er: ");
-  document.getElementById("username").innerHTML = user;
-  // thanks to https://stackoverflow.com/questions/17616624/detect-if-string-contains-any-spaces#17616646
-  if (/^ *$/.test(user)) {
-    user = prompt("Come on, enter your name", "nobody");
-    //document.getElementById('username').innerHTML = user;
-  }
-  if (/^ *$/.test(user)) {
-    user = "nemo's epoch seconds" + start.toString() / 1000;
-  } else if (user === null) {
-    user = "nobody's epoch seconds " + start.toString() / 1000000;
+  while (!user) {
+    user = prompt("Hei, velkommen! Hva er navnet ditt?", "mitt navn er: ");
   }
   displayUser(user);
 

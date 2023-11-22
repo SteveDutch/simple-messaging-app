@@ -1,21 +1,21 @@
 package com.stevedutch.assignment14.web;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stevedutch.assignment14.domain.Message;
 import com.stevedutch.assignment14.domain.User;
+import com.stevedutch.assignment14.dto.MessageTextAndUserDTO;
 import com.stevedutch.assignment14.service.MessageService;
 import com.stevedutch.assignment14.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @JsonIgnoreProperties(value = {"userId"})
-@Controller
+@RestController
 public class MessageController {
 	
     @Autowired
@@ -25,17 +25,20 @@ public class MessageController {
 	private MessageService messageService;
 	
 	@PostMapping("channel")
-	public void postMessageInclUser(@RequestBody String json) throws JsonMappingException, JsonProcessingException {
+	public void postMessageInclUser(@RequestBody Message message) {
 
-		System.out.println(json);
-	
-		ObjectMapper objectMapper = new ObjectMapper();
-		Message message = objectMapper.readValue(json, Message.class);		
+		System.out.println(message);
 		
 		User user = userService.findByUsername(message.getUser());
-		message.setUser(user); 
+		message.setUser(user);
 		messageService.saveMessage(message);
-		return;
 	}
 
+	@GetMapping("/channel/messages")
+	public List<MessageTextAndUserDTO> getLast10Messages () {
+
+		System.out.println("very start of RestController, ");
+
+		return messageService.get10MessagesDTO();
+	}
 }

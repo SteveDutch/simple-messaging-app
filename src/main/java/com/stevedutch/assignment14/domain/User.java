@@ -19,29 +19,24 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Table(name = "users") // changed into users
 public class User {
 
-//	@SerializedName("username") in Jackson it would be @JsonProperty("username")
 	@Column(unique = true)
 	public String username;
 
 //	@SerializedName("userId")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "user_id")
-	private Long userId;
+	private Long id;
 
 	@JsonManagedReference
-//	@SerializedName("messages")
 	@OneToMany(mappedBy = "user")
 	private List<Message> messages = new ArrayList<>();
 
 	public User(String username, List<Message> messages) {
-		super();
 		this.username = username;
 		this.messages = messages;
 	}
 
 	public User(String username) {
-		super();
 		this.username = username;
 	}
 
@@ -49,12 +44,12 @@ public class User {
 		
 	}
 
-	public Long getUserId() {
-		return userId;
+	public Long getId() {
+		return id;
 	}
 
-	public void setUserId(Long userId) {
-		this.userId = userId;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getUsername() {
@@ -75,7 +70,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [username=" + username + ", userId=" + userId + "messages: " + messages + "]";
+		return "User [username=" + username + ", userId=" + id + "messages: " + messages + "]";
 	}
 
 }

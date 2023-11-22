@@ -10,9 +10,9 @@ import com.stevedutch.assignment14.domain.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 
 	// XXX wiederhole warum dies funktioniert ohne @Query --> weil es Teil von JpaRepository ist :)
-	public User findByUsername(String username);
+	User findByUsername(String username);
 
 	@Query("select u from User u where username = :username")
-	public List<User> findExactlyOneUserByUsername(String username);
+	User findExactlyOneUserByUsername(String username);
 
 }

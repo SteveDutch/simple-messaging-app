@@ -18,25 +18,12 @@ public class MessageService {
 	@Autowired
 	private MessageRepository messageRepo;
 
-	public Message saveMessage(Message message) {
-		return messageRepo.save(message);
-	}
-
-	public Message saveMessage(String string, User user) {
-		System.out.println(string + " (from start of MessageService.saveMessage()");
-		Message message = new Message();
-		message.setUser(user);
-		message.setMessageText(string);
-		System.out.println(message);
-		return messageRepo.save(message);
-	}
-
-	public ArrayList<Message> findLast10Messages() {
-		return messageRepo.findLast10Messages();
+	public void saveMessage(Message message) {
+		messageRepo.save(message);
 	}
 
 	public ArrayList<MessageTextAndUserDTO> get10MessagesDTO() {
-		List<Message> lastTen = messageRepo.findLast10Messages();
+		List<Message> lastTen = messageRepo.findTop10ByOrderByIdDesc();
 		ArrayList<MessageTextAndUserDTO> messageDTO = new ArrayList<>();
 
 		for (Message elem : lastTen) {
@@ -49,10 +36,4 @@ public class MessageService {
 		Collections.reverse(messageDTO);
 		return messageDTO;
 	}
-
-	public ArrayList<Message> findLast10MessageTextsAndUsermame() {
-		System.out.println(messageRepo.findLast10MessageTextsAndUsermame());
-		return messageRepo.findLast10MessageTextsAndUsermame();
-	}
-
 }

@@ -9,10 +9,8 @@ public class ChannelController {
 
 	@GetMapping("/channel")
 	public String showChannel(ModelMap model) {
-		model.put("user", model);
 		return "/channel";
 	}
-	
 }
 
 

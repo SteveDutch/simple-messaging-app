@@ -3,6 +3,7 @@ package com.stevedutch.assignment14.web;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.stevedutch.assignment14.dto.MessageTextAndUserDTO;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -11,11 +12,13 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.stevedutch.assignment14.service.MessageService;
 
+import java.util.List;
+
 @ExtendWith(MockitoExtension.class)
- class MessageRestControllerTest{
+ class MessageControllerTest {
 
 	@InjectMocks
-	MessageRestController underTest;
+	MessageController underTest;
 	@Mock
 	MessageService messageService;
 	@Test
@@ -23,8 +26,8 @@ import com.stevedutch.assignment14.service.MessageService;
 	// given
 	// XXX ok, it's running, but ... 
 	// when
-	String actual = underTest.getLast10Messages();
+	List<MessageTextAndUserDTO> actual = underTest.getLast10Messages();
 	// then
-	assertThat(actual).isEqualTo("[]");
+	assertThat(actual.size()).isEqualTo(0);
 	} 
 }

@@ -18,36 +18,18 @@ public class UserService {
 		return userRepo.save(user);
 	}
 
-	public User saveUser(String username) {
-		
-		System.out.println(username);
-		User user = userRepo.findByUsername(username);
-		if (user == null) {
-			user = new User();
-			user.setUsername(username);
-			return userRepo.save(user);
-		} else {
-			return user;
-		}
-	}
-
 	public User findExactlyOneUserByUsername(String username) {
 		
-		List<User> users = userRepo.findExactlyOneUserByUsername(username);
-		if (users.size() > 0) {
+		User user = userRepo.findExactlyOneUserByUsername(username);
+		if (user != null) {
 			System.out.println("existierenden user gefuden!");
-			return users.get(0);
+			return user;
 		} else
 			System.out.println("neuer user kreiert");
 		return new User(username);
 	}
 
-	public User findByUsername(String username) {
-		return userRepo.findByUsername(username);
-	}
-
 	public User findByUsername(User user) {
 		return userRepo.findByUsername(user.username);
 	}
-
 }

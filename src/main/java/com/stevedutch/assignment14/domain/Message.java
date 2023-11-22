@@ -1,6 +1,5 @@
 package com.stevedutch.assignment14.domain;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,17 +16,13 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @Table(name = "messages")
 public class Message {
 
-//	@SerializedName("messageText") in Jackson it would be @JsonProperty("messageText")
 	private String messageText;
 
-//	@SerializedName("messageId")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "message_id")
-	private Long messageId;
+	private Long id;
 
 	@JsonBackReference
-//	@SerializedName("user")
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
@@ -44,12 +39,12 @@ public class Message {
 		this.messageText = message;
 	}
 
-	public Long getMessageId() {
-		return messageId;
+	public Long getId() {
+		return id;
 	}
 
-	public void setMessageId(Long messageId) {
-		this.messageId = messageId;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public User getUser() {
@@ -62,8 +57,8 @@ public class Message {
 
 	@Override
 	public String toString() {
-		return "Message [messageText = " + messageText + ", messageId = " + messageId 
-				+ ", user = " + (user.getUsername()) + (user.getUserId()) + "]";
+		return "Message [messageText = " + messageText + ", messageId = " + id
+				+ ", user = " + (user.getUsername()) + (user.getId()) + "]";
 	}
 
 }
