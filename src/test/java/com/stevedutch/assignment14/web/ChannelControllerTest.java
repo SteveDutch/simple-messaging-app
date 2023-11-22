@@ -1,9 +1,7 @@
 package com.stevedutch.assignment14.web;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -33,19 +31,14 @@ class ChannelControllerTest extends ChannelController {
 		String view = controller.showChannel(model);
 
 		assertEquals("/channel", view);
-		verify(model).put("user", model);
 	}
 
 	@Test
 	public void shouldShowChannel() {
 
-		String result = channelController.showChannel(model);
+		String result = controller.showChannel(model);
 		assertEquals("/channel", result);
-		verify(model).put("user", model);
 	}
-
-	@InjectMocks
-	private ChannelController channelController;
 
 	@Test
 	void myShowChannelTest() {
@@ -55,19 +48,13 @@ class ChannelControllerTest extends ChannelController {
 		String expectedResult = sut2.showChannel(sut);
 
 		assertEquals("/channel", expectedResult);
-		assertTrue(sut.containsAttribute("user"));
+		assertFalse(sut.containsAttribute("user"));
 	}
-
-	@Mock
-	private ModelMap modelMap;
-
-	@InjectMocks
-	ChannelController underTest;
 
 	@Test
 	public void testShowChannel() {
-		String viewName = channelController.showChannel(modelMap);
-		verify(modelMap, times(1)).put("user", modelMap);
+		String viewName = controller.showChannel(model);
+		verify(model, never()).put("user", model);
 		assertEquals("/channel", viewName);
 	}
 

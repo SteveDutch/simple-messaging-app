@@ -18,7 +18,6 @@ public class UserController {
 
 	@GetMapping("/welcome")
 	public String welcomeUser(ModelMap model) {
-		model.put("user", model);
 		return "/welcome";
 	}
 	
@@ -28,5 +27,4 @@ public class UserController {
 		userService.saveUser(actualUser);
 		return "/welcome";
 	}
-	
 }

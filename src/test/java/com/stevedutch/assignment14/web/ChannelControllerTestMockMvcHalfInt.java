@@ -21,6 +21,6 @@ public class ChannelControllerTestMockMvcHalfInt {
         mockMvc.perform(get("/channel"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("/channel"))
-                .andExpect(model().attributeExists("user"));
+                .andExpect(model().attributeDoesNotExist("user"));
     }
 }
